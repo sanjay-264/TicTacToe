@@ -1,33 +1,42 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class TicTacToe {
 
     public static void main(String[] args) {
 
-        int slot = getUserInput();
+        // Sample board (can come from previous UC)
+        char[][] board = {
+                {'-', '-', '-'},
+                {'-', '-', '-'},
+                {'-', '-', '-'}
+        };
 
-        int row = getRow(slot);
-        int col = getCol(slot);
+        // Example input (assume received from UC4)
+        int row = 1;
+        int col = 1;
 
-        System.out.println("Row: " + row);
-        System.out.println("Column: " + col);
+        // Validation check
+        if (isValidMove(board, row, col)) {
+            System.out.println("Move Accepted");
+        } else {
+            System.out.println("Move Rejected");
+        }
     }
 
-    // UC3 method
-    public static int getUserInput() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter slot (1-9): ");
-        return scanner.nextInt();
-    }
+    // UC5: Validation Method
+    public static boolean isValidMove(char[][] board, int row, int col) {
 
-    // UC4 methods
-    public static int getRow(int slot) {
-        return (slot - 1) / 3;
-    }
+        // 1. Boundary Check (0–2)
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
 
-    public static int getCol(int slot) {
-        return (slot - 1) % 3;
+        // 2. Cell Empty Check
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        // Valid move
+        return true;
     }
 }
