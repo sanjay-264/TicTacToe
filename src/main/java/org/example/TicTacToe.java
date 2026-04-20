@@ -6,20 +6,28 @@ public class TicTacToe {
 
     public static void main(String[] args) {
 
-        // Call method to get user input
         int slot = getUserInput();
 
-        System.out.println("You selected slot: " + slot);
+        int row = getRow(slot);
+        int col = getCol(slot);
+
+        System.out.println("Row: " + row);
+        System.out.println("Column: " + col);
     }
 
-    // Method to read user input
+    // UC3 method
     public static int getUserInput() {
-
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter slot (1-9): ");
+        return scanner.nextInt();
+    }
 
-        System.out.print("Enter a slot number (1-9): ");
-        int slot = scanner.nextInt();
+    // UC4 methods
+    public static int getRow(int slot) {
+        return (slot - 1) / 3;
+    }
 
-        return slot;
+    public static int getCol(int slot) {
+        return (slot - 1) % 3;
     }
 }
