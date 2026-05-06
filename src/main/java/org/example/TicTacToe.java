@@ -1,42 +1,41 @@
-package org.example;
-
 public class TicTacToe {
 
     public static void main(String[] args) {
 
-        // Sample board (can come from previous UC)
+        // Create board
         char[][] board = {
                 {'-', '-', '-'},
                 {'-', '-', '-'},
                 {'-', '-', '-'}
         };
 
-        // Example input (assume received from UC4)
-        int row = 1;
+        // Player move details
+        int row = 0;
         int col = 1;
+        char symbol = 'X';
 
-        // Validation check
-        if (isValidMove(board, row, col)) {
-            System.out.println("Move Accepted");
-        } else {
-            System.out.println("Move Rejected");
-        }
+        // Update board
+        updateBoard(board, row, col, symbol);
+
+        // Display updated board
+        printBoard(board);
     }
 
-    // UC5: Validation Method
-    public static boolean isValidMove(char[][] board, int row, int col) {
+    // UC6 Method
+    public static void updateBoard(char[][] board, int row, int col, char symbol) {
+        board[row][col] = symbol;
+    }
 
-        // 1. Boundary Check (0–2)
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+    // Print board
+    public static void printBoard(char[][] board) {
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+
+            System.out.println();
         }
-
-        // 2. Cell Empty Check
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        // Valid move
-        return true;
     }
 }
